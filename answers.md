@@ -65,6 +65,10 @@ def build_expression_tree(expression):
         if token.isdigit():
             operands.append(Node(int(token)))
 
+        # Step 1.5: Encounter a variable
+        elif token.isidentifier():
+            operands.append(Node(token))
+
         # Step 2: Encounter an opening parenthesis
         elif token == '(':
             operators.append(token)
@@ -106,13 +110,43 @@ $\boxed{S(n) = \Theta(n)}$
 
 
 
-**2b) (2 pts)** Corresponding arithmetic expression work and span?
+**2b) (2 pts)** Corresponding arithmetic expression work and span?  
+Tree $T_E$ can be evaluated recursively. Each leaf provides a value, and each internal node applies the operator it contains to the values returned by its two children. Every node is processed in $O(1)$ constant time, so we end up with the same work as before.  
+
+$\boxed{W(n) = \Theta(n)}$   
+
+The span is different, however. Because we're evaluating the left and right trees in parallel, but each parent node must wait for its children to process, the span will be based on the maxiumum depth of the tree, $d$.  
+
+$\boxed{S(n) = \Theta(d)}$  
+
+If the tree is balanced, this works out to:  
+
+$\boxed{S(n) = \Theta(\log n)}$  
+
+Worst case unbalanced tree can move the span up to:  
+
+$\boxed{S(n) = \Theta(n)}$  
 
 
 
-**2c) (2 pts)** work/span to update a previously computed value
+**2c) (2 pts)** work/span to update a previously computed value  
+The asnwer is similar to 2b, in that the span wil be proportional to tree depth, but in this case because we're only updating one value the work is also proportional to tree depth because we're only processing the change to variable and any required alterations along the  effected path through the tree from the root to the variable change. For depth $d$, work and span are:  
 
+$\boxed{W(n) = \Theta(d)}$  
 
+$\boxed{S(n) = \Theta(d)}$
+
+For a balanced tree, this works out to:  
+
+$\boxed{W(n) = \Theta(\log n)}$  
+
+$\boxed{S(n) = \Theta(\log n)}$  
+
+Unbalanced tree in the worst case where everything needs to be updated:  
+
+$\boxed{W(n) = \Theta(n)}$  
+
+$\boxed{S(n) = \Theta(n)}$
 
 ## 3. Improving Dijkstra
 
