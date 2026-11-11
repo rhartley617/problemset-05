@@ -130,11 +130,11 @@ $\boxed{S(n) = \Theta(n)}$
 
 
 **2c) (2 pts)** work/span to update a previously computed value  
-The asnwer is similar to 2b, in that the span wil be proportional to tree depth, but in this case because we're only updating one value the work is also proportional to tree depth because we're only processing the change to variable and any required alterations along the  effected path through the tree from the root to the variable change. For depth $d$, work and span are:  
+The asnwer is similar to 2b, in that the span wil be proportional to tree depth, but in this case because we're only updating one value the work is also proportional to tree depth (*assuming intermediate results are stored in the nodes and only one leaf is changing) we're only processing the change to variable and any required alterations along the affected path through the tree from the node change we're making to the root. For depth $d$, work and span are:  
 
-$\boxed{W(n) = \Theta(d)}$  
+$\boxed{W(n) = O(d)}$  
 
-$\boxed{S(n) = \Theta(d)}$
+$\boxed{S(n) = O(d)}$
 
 For a balanced tree, this works out to:  
 
@@ -142,7 +142,7 @@ $\boxed{W(n) = \Theta(\log n)}$
 
 $\boxed{S(n) = \Theta(\log n)}$  
 
-Unbalanced tree in the worst case where everything needs to be updated:  
+Unbalanced tree in the worst case where we have an update path containing $\Theta(n)$ nodes:  
 
 $\boxed{W(n) = \Theta(n)}$  
 
