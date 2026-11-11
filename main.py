@@ -22,7 +22,7 @@ def shortest_shortest_path(graph, source):
     counter = 0
 
     while pq:
-        dist, edges, _, vertex = heappop(pq)
+        dist, edges, nope, vertex = heappop(pq)
 
         # Skip outdated entries
         if (dist, edges) != best[vertex]:

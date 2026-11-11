@@ -8,7 +8,22 @@
 ## 1. Shortest shortest paths
 
 
-**1b) (4 pts)** Work and span 
+**1b) (4 pts)** Work and span  
+Initilizing the best dictionary requires: $O(|V|)$  
+Initializing pq: $O(1)$  
+Process vertices and edges in the nested While..For loop: $O(|V| + |E|)$  
+Heap operations heappush() and heappop(): $O(\log|V|)$  
+Return the dictionary: $O(1)$  
+
+Because each edge processed in the While..For loop can potentially call a heappush() operation and each record pushed can potentially call a heappop() operation, there is a potential of $O(|V| + |E|)$ heap operations, each of which costs $O(\log|V|)$ under simple graph assumption: 
+
+$W(|V|,|E|) = O((|V| + |E|)\log|V|) + O(|V|) + O(1) + O(|V| + |E|) + O(1)$
+
+$\boxed{W(|V|,|E|) = O((|V| + |E|)\log|V|)}$  
+
+Because there is no parallelism, span will equal work:  
+
+$\boxed{S(|V|,|E|) = O((|V| + |E|)\log|V|)}$
 
 
 
