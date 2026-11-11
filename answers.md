@@ -65,21 +65,32 @@ def build_expression_tree(expression):
         if token.isdigit():
             operands.append(Node(int(token)))
 
-        # Step 2: Encounter an operator
+        # Step 2: Encounter an opening parenthesis
+        elif token == '(':
+            operators.append(token)
+
+        # Step 3: Encounter a closing parenthesis
+        elif token == ')':
+            while operators and operators[-1] != '(':
+                apply_operator()
+
+            operators.pop()  # Remove '('
+
+        # Step 4: Encounter an operator
         elif token in precedence:
 
-            # Apply operators with higher or equal precedence
             while (operators and
+                   operators[-1] != '(' and
                    precedence[operators[-1]] >= precedence[token]):
                 apply_operator()
 
             operators.append(token)
 
-    # Step 3: Apply remaining operators
+    # Step 5: Apply remaining operators
     while operators:
         apply_operator()
 
-    # Step 4: Return the root
+    # Step 6: Return the root
     return operands.pop()
 ```
 
