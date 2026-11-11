@@ -30,7 +30,58 @@ $\boxed{S(|V|,|E|) = O((|V| + |E|)\log|V|)}$
 ## 2. Expression Trees
 
 
-**2a) (3 pts)** Expression tree algorithm with work and span
+**2a) (3 pts)** Expression tree algorithm with work and span  
+```python  
+class Node:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+
+def build_expression_tree(expression):
+    operands = []
+    operators = []
+
+    precedence = {
+        '+': 1,
+        '-': 1,
+        '*': 2,
+        '/': 2
+    }
+
+    def apply_operator():
+        operator = operators.pop()
+
+        right = operands.pop()
+        left = operands.pop()
+
+        new_node = Node(operator, left, right)
+        operands.append(new_node)
+
+    for token in expression.split():
+
+        # Step 1: Encounter a number
+        if token.isdigit():
+            operands.append(Node(int(token)))
+
+        # Step 2: Encounter an operator
+        elif token in precedence:
+
+            # Apply operators with higher or equal precedence
+            while (operators and
+                   precedence[operators[-1]] >= precedence[token]):
+                apply_operator()
+
+            operators.append(token)
+
+    # Step 3: Apply remaining operators
+    while operators:
+        apply_operator()
+
+    # Step 4: Return the root
+    return operands.pop()
+```
 
 
 
