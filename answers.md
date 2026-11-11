@@ -93,6 +93,16 @@ def build_expression_tree(expression):
     # Step 6: Return the root
     return operands.pop()
 ```
+The work for most of the operations involved in $O(1)$. Although the algorithm does contain nested while loops, each operator is pushed and popped from its respective stack exactly once. The algorithm assumes non-negative integers; it can't process decimals or negative numbers.
+expression.split() = $\Theta(n)$  
+iterate through all the tokens =  $\Theta(n)$  
+Apply remaining operators = $O(n)$  
+
+$\boxed{W(n) = \Theta(n)}$  
+
+The algorithm contains no parallelism, so span is the same as work.  
+
+$\boxed{S(n) = \Theta(n)}$ 
 
 
 
