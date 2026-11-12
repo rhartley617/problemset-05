@@ -178,8 +178,19 @@ Therefore, the maximum total work for Dijkstra's algorithm is:
 $\boxed{O((d|V| + |E|)(\log_d |V|))}$.
 
 
-**3d) (3 pts)** What value of $d$ yields an overall running time of $O(|E|)$?
- 
+**3d) (3 pts)** What value of $d$ yields an overall running time of $O(|E|)$?  
+
+ We start with the work equation from 3c, $W \in O((d|V| + |E|)(\log_d |V|))$.  
+ Set $d|V| = |E|$, so that the delete-min work has the same asymptotic bound as the insertion and update work.  
+ $d = \frac{|E|}{|V|}$  
+ substitute target edge value: $d = \frac{|V|^{1 + \epsilon}}{|V|}$  
+ $d = |V|^{\epsilon}$  
+ substitute into main equation: $W = O((|V|^{\epsilon}|V| + |E|)(\log_{|V|^{\epsilon}} |V|))$  
+ $W = O((|V|^{1 + \epsilon} + |E|)(\frac{1}{\epsilon}))$  
+$W = O((2|E|)(\frac{1}{\epsilon}))$  
+Constants absorbed by Big-O notation $|E|$.  
+
+$\boxed{W \in O(|E|)}$
 
 
 ## 4. All-pairs shortest paths using Dynamic Programming
