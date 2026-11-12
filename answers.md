@@ -169,7 +169,13 @@ Insert requires at most $O(log_d n)$ work because it only has to compare the ins
 
 **3c) (3 pts)** New bound on the work for Dijkstra's using $d$-ary heap 
 
-Dijkstra's algorithm performs at most $O(|V|)$ delete-min operations. Because each delete-min operation costs at most $O(d \cdot log_d n)$ work, we 
+Dijkstra's algorithm performs at most $O(|V|)$ delete-min operations. Because each delete-min operation costs at most $O(d \cdot log_d n)$ work and Dijkstra's algoritm will do at most $O(|V|)$ of them, total work for delete-min operations is $O(d|V|\log_d |V|)$.  
+
+The algorithm will also process up to $O(|E|)$ priority queue insertions or updates. Each of those operatiosn is going to require at most $O(log_d n)$ work, which gives us a maximum total work of $O(|E|\log_d |V|)$ for the insertions and updates.  
+
+Therefore, the maximum total work for Dijkstra's algorithm is:  
+
+$\boxed{O((d|V| + |E|)(\log_d |V|))}$.
 
 
 **3d) (3 pts)** What value of $d$ yields an overall running time of $O(|E|)$?
