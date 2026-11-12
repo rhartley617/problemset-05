@@ -151,7 +151,8 @@ $\boxed{S(n) = \Theta(n)}$
 ## 3. Improving Dijkstra
 
 
-**3a) (2 pts)** Maximum depth of a $d$-ary heap
+**3a) (2 pts)** Maximum depth of a $d$-ary heap  
+The maxiumn depth of a d-ary heap is $\Theta(\log_d n)$, where $d$ = the maxiumum number of children per node and $n$ = the number of nodes. The heap's shape property ensures that all levels except the bottom are completely filled, with the bottom level being filled from the left to the right. The height of the tree grows logarithmically with $n$, using base $d$.
 
 
 
