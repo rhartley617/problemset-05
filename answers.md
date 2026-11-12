@@ -9,6 +9,7 @@
 
 
 **1b) (4 pts)** Work and span  
+
 Initilizing the best dictionary requires: $O(|V|)$  
 Initializing pq: $O(1)$  
 Process vertices and edges in the nested While..For loop: $O(|V| + |E|)$  
@@ -31,6 +32,7 @@ $\boxed{S(|V|,|E|) = O((|V| + |E|)\log|V|)}$
 
 
 **2a) (3 pts)** Expression tree algorithm with work and span  
+
 ```python  
 class Node:
     def __init__(self, value, left=None, right=None):
@@ -111,6 +113,7 @@ $\boxed{S(n) = \Theta(n)}$
 
 
 **2b) (2 pts)** Corresponding arithmetic expression work and span?  
+
 Tree $T_E$ can be evaluated recursively. Each leaf provides a value, and each internal node applies the operator it contains to the values returned by its two children. Every node is processed in $O(1)$ constant time, so we end up with the same work as before.  
 
 $\boxed{W(n) = \Theta(n)}$   
@@ -130,6 +133,7 @@ $\boxed{S(n) = \Theta(n)}$
 
 
 **2c) (2 pts)** work/span to update a previously computed value  
+
 The asnwer is similar to 2b, in that the span wil be proportional to tree depth, but in this case because we're only updating one value the work is also proportional to tree depth (*assuming intermediate results are stored in the nodes and only one leaf is changing) we're only processing the change to variable and any required alterations along the affected path through the tree from the node change we're making to the root. For depth $d$, work and span are:  
 
 $\boxed{W(n) = O(d)}$  
@@ -152,6 +156,7 @@ $\boxed{S(n) = \Theta(n)}$
 
 
 **3a) (2 pts)** Maximum depth of a $d$-ary heap  
+
 The maxiumn depth of a d-ary heap is $\Theta(\log_d n)$, where $d$ = the maxiumum number of children per node and $n$ = the number of nodes. The heap's shape property ensures that all levels except the bottom are completely filled, with the bottom level being filled from the left to the right. The height of the tree grows logarithmically with $n$, using base $d$.
 
 
@@ -164,6 +169,7 @@ Insert requires at most $O(log_d n)$ work because it only has to compare the ins
 
 **3c) (3 pts)** New bound on the work for Dijkstra's using $d$-ary heap 
 
+Dijkstra's algorithm performs at most $O(|V|)$ delete-min operations. Because each delete-min operation costs at most $O(d \cdot log_d n)$ work, we 
 
 
 **3d) (3 pts)** What value of $d$ yields an overall running time of $O(|E|)$?
