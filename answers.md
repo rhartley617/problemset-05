@@ -158,7 +158,9 @@ The maxiumn depth of a d-ary heap is $\Theta(\log_d n)$, where $d$ = the maxiumu
 
 **3b) (3 pts)** Work done by `delete-min` and `insert` operations in a $d$-ary heap.
 
+Delete-min requires at most $O(d \cdot log_d n)$ work. The new root will travel downward through the heap by at most $log_d n$ levels, and it must examine up to $d$ children at each level in order to find the smallest child node to swap positions with.  
 
+Insert requires at most $O(log_d n)$ work because it only has to compare the inserted value with one parent node per level to check for a potential position swap with that parent node as it moves up the tree.
 
 **3c) (3 pts)** New bound on the work for Dijkstra's using $d$-ary heap 
 
