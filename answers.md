@@ -201,8 +201,8 @@ $\boxed{W \in O(|E|)}$
 
 Compute $\mathit{APSP}(i, j, k)$ for all $i, j, k$.  
 
-There are three vertices, 0, 1, 2.
-With $i$ representing the starting vertex by row, $j$ representing the destination vertex by column, the value at $(i, j)$ representing the minimum total weight of a walk from $i$ to $j$ using at most $k$ edges, and $k$ representing the maximum number of edges allowed on the path from $i$ to $j$, the three matrices below show the minimum total path weight for $0 \leq k \leq 2$ edges where walks are allowed to revisit vertices. The graph contains a negative cycle, so allowing additional edges can produce progressively smaller path weights, which is why it's important to limit the amount of edges used in order to prevent the path weights from decreasing without bound.
+There are three vertices, 0, 1, and 2. With $i$ representing the starting vertex by row, $j$ representing the destination vertex by column, and $k$ representing the maximum number of edges allowed in a walk from $i$ to $j$, the value at $(i,j)$ represents the minimum total weight of a walk using at most $k$ edges. The three matrices below show the minimum total walk weights for $0 \leq k \leq 2$, where walks are allowed to revisit vertices. The graph contains a negative cycle, so allowing additional edges can produce progressively smaller walk weights, which is why limiting the number of edges prevents the weights from decreasing without bound.
+
 
 $
 APSP(i,j,0) =
