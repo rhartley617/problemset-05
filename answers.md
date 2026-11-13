@@ -243,7 +243,22 @@ $
 $\mathit{APSP}(i, j, 2)$. Can you write $\mathit{APSP}(i, j, 2)$ in
 terms of $\mathit{APSP}(i, j, 0)$ and $\mathit{APSP}(i, j, 1)$ only?
 
+The Floyd-Warshall recurrence for $\mathit{APSP}(i, j, 2)$ is:  
 
+$
+APSP(i,j,2) =
+\min
+\begin{cases}
+\mathit{APSP}(i,j,1), \\
+\mathit{APSP}(i,2,1) + \mathit{APSP}(2,j,1)
+\end{cases}
+$
+
+The overall relationship between the 3 values is:  
+
+$\mathit{APSP}(i,j,2) \leq \mathit{APSP}(i,j,1) \leq \mathit{APSP}(i,j,0)$  
+
+Each increase in $k$ allows an additional vertex to be used as an intermediate vertex, while preserving all previously permitted intermediate vertices. The minimum total walk weight can only decrease or remain unchanged as additional intermediate vertices are permitted. By the time we're ready to compute $\mathit{APSP}(i,j,2)$, the best intermediate walk weight using only vertices 0 and 1 as permitted vertices is going to be $\mathit{APSP}(i,j,1)$. In order to compute $\mathit{APSP}(i,j,2)$, we need to compare $\mathit{APSP}(i,j,1)$ with new possible paths that include vertex 2, which will require us to look at $\mathit{APSP}(i,2,1)$ and $\mathit{APSP}(2,j,1)$. Therefore we can't express $\mathit{APSP}(i,j,2)$ strictly in terms of $\mathit{APSP}(i,j,0)$ and $\mathit{APSP}(i,j,1)$ for the same pair of vertices $(i, j)$.
 
 **4c) (3 pts)** Generalize your observation from b) above to give an optimal substructure property for $\mathit{APSP}(i, j, k).$
 
