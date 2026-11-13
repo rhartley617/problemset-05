@@ -201,20 +201,10 @@ $\boxed{W \in O(|E|)}$
 
 Compute $\mathit{APSP}(i, j, k)$ for all $i, j, k$.  
 
-There are three vertices, 0, 1, and 2. With $i$ representing the starting vertex by row, $j$ representing the destination vertex by column, and $k$ representing the maximum number of edges allowed in a walk from $i$ to $j$, the value at $(i,j)$ represents the minimum total weight of a walk using at most $k$ edges. The three matrices below show the minimum total walk weights for $0 \leq k \leq 2$, where walks are allowed to revisit vertices. The graph contains a negative cycle, so allowing additional edges can produce progressively smaller walk weights, which is why limiting the number of edges prevents the weights from decreasing without bound.
-
-
-$
-APSP(i,j,0) =
-\begin{bmatrix}
-0 & \infty & \infty \\
-\infty & 0 & \infty \\
-\infty & \infty & 0
-\end{bmatrix}
-$  
+There are three vertices, 0, 1, and 2. With $i$ representing the starting vertex by row, $j$ representing the destination vertex by column, and $k$ representing the maximum index vertex permitted as an intermediate vertex, each entry at $(i,j)$ represents the weight calculated for a walk from $i$ to $j$. Matrix $D^{-1}$ represents the direct edge weights when no intermediate vertices are permitted. The three matrices underneath it show the results of the Floyd–Warshall recurrence for $0 \leq k \leq 2$ as we allow intermediate vertices $k = 0$ (vertex 0), $k = 1$ (vertices 0, 1) and $k = 2$ (vertices 0, 1, 2). The graph contains a negative cycle, $0 \rightarrow 1 \rightarrow 0$, with total weight $-4$. Therefore, the finite values produced by the recurrence do not represent unrestricted shortest walk distances, since repeating the negative cycle can decrease walk weights without bound.
 
 $
-APSP(i,j,1) =
+D^{-1} =
 \begin{bmatrix}
 0 & -2 & 2 \\
 -2 & 0 & 1 \\
@@ -223,11 +213,29 @@ APSP(i,j,1) =
 $  
 
 $
+APSP(i,j,0) =
+\begin{bmatrix}
+0 & -2 & 2 \\
+-2 & -4 & 0 \\
+2 & 0 & 0
+\end{bmatrix}
+$  
+
+$
+APSP(i,j,1) =
+\begin{bmatrix}
+-4 & -6 & -2 \\
+-6 & -8 & -4 \\
+-2 & -4 & 0
+\end{bmatrix}
+$  
+
+$
 APSP(i,j,2) =
 \begin{bmatrix}
--4 & -2 & -1 \\
--2 & -4 & 0 \\
--1 & 0 & 0
+-4 & -6 & -2 \\
+-6 & -8 & -4 \\
+-2 & -4 & 0
 \end{bmatrix}
 $  
 
