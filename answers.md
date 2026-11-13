@@ -303,11 +303,11 @@ $W_{P}(n) = \Theta(n^3)$
 
 For a single execution of finding the shortest path from one vertex to all the others, the standard Djikstra's algorithm using a binary heap priority queue requires this amount of work, with $n$ representing vertices and $m$ representing edges:  
 
-$W_{D}(n) = O((n + m)\log n)$  
+$W_{D}(n,m) = O((n + m)\log n)$  
 
 To find shortest path between all vertices, as our dynamic programming algorithm does, Djikstra's algorithm must run $n$ times, so the total work we get for Djikstra is:  
 
-$W_{D}(n) = O(n(n + m)\log n)$  
+$W_{D}(n,m) = O(n(n + m)\log n)$  
 
 Whether the dynamic programming algorithm does better than Djikstra's algorithm for this purpose depends on the number of edges in the graph being analyzed.  
 
@@ -327,7 +327,7 @@ $W_{D}(n) = O(n^3\log n)$
 
 $W_{P}(n) = \Theta(n^3)$  
 
-Therefore we would expect Djikstra's algorithm to be more efficient than the dynamic programming algorithm for sparse graphs, but less work efficient than the dynamic programming algorithm for dense graphs. Additionally, Floyd-Warshall can handle negative edge weights provided no negative cycles exist, whereas Djikstra's algorithm requires nonnegative edge weights.
+Therefore we would expect Djikstra's algorithm in the worst case to be more efficient than the dynamic programming algorithm for sparse graphs, but less work efficient than the dynamic programming algorithm for dense graphs. Additionally, Floyd-Warshall can handle negative edge weights provided no negative cycles exist, whereas Djikstra's algorithm requires nonnegative edge weights.
 
 ## 5. Spanning trees
 
