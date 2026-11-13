@@ -273,7 +273,7 @@ $
 \end{cases}
 $
 
-We compare the shortest path that doesn't pass through vertex $k$ as an intermediate vertex with the shortest path that does pass through vertex $k$ as an intermediate vertex and take the minimum of the two.
+We compare the shortest path that doesn't pass through vertex $k$ as an intermediate vertex with the shortest path that does pass through vertex $k$ as an intermediate vertex and take the one with the minimum weight of the two.
 
 **4d) (3 pts)** How many distinct subproblems will be computed from scratch, and
 what is the resulting work of this dynamic programming algorithm?
