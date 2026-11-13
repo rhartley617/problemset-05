@@ -276,7 +276,17 @@ $
 We compare the shortest path that doesn't pass through vertex $k$ as an intermediate vertex with the shortest path that does pass through vertex $k$ as an intermediate vertex and take the one with the minimum weight of the two.
 
 **4d) (3 pts)** How many distinct subproblems will be computed from scratch, and
-what is the resulting work of this dynamic programming algorithm?
+what is the resulting work of this dynamic programming algorithm?  
+
+There are $n$ possible starting vertices $i$.  
+There are $n$ possible destination vertices $j$  
+There are $n$ possible values for $k$ ranging from $0$ to $n -1$   
+
+This gives us $n \cdot n \cdot n = n^3$ subproblems. Due to memozation table storage, each subproblem is computed once. Each subproblem requires a constant number of table lookups, one addition operation, and one comparsion operation, all of which are constant time operations. Total work is therefore:  
+
+$W(n) = n^3 \cdot \Theta(1)$  
+
+$\boxed{W(n) = \Theta(n^3)}$
 
 
 
