@@ -10,7 +10,7 @@
 
 **1b) (4 pts)** Work and span  
 
-Initilizing the best dictionary requires: $O(|V|)$  
+Initializing the best dictionary requires: $O(|V|)$  
 Initializing pq: $O(1)$  
 Process vertices and edges in the nested While..For loop: $O(|V| + |E|)$  
 Heap operations heappush() and heappop(): $O(\log|V|)$  
@@ -122,7 +122,7 @@ Tree $T_E$ can be evaluated recursively. Each leaf provides a value, and each in
 
 $\boxed{W(n) = \Theta(n)}$   
 
-The span is different, however. Because we're evaluating the left and right trees in parallel, but each parent node must wait for its children to process, the span will be based on the maxiumum depth of the tree, $d$.  
+The span is different, however. Because we're evaluating the left and right trees in parallel, but each parent node must wait for its children to process, the span will be based on the maximum depth of the tree, $d$.  
 
 $\boxed{S(n) = \Theta(d)}$  
 
@@ -138,7 +138,7 @@ $\boxed{S(n) = \Theta(n)}$
 
 **2c) (2 pts)** work/span to update a previously computed value  
 
-The asnwer is similar to 2b, in that the span wil be proportional to tree depth, but in this case because we're only updating one value the work is also proportional to tree depth (*assuming intermediate results are stored in the nodes and only one leaf is changing) we're only processing the change to variable and any required alterations along the affected path through the tree from the node change we're making to the root. For depth $d$, work and span are:  
+The answer is similar to 2b, in that the span will be proportional to tree depth, but in this case because we're only updating one value the work is also proportional to tree depth (*assuming intermediate results are stored in the nodes and only one leaf is changing) we're only processing the change to variable and any required alterations along the affected path through the tree from the node change we're making to the root. For depth $d$, work and span are:  
 
 $\boxed{W(n) = O(d)}$  
 
@@ -161,7 +161,7 @@ $\boxed{S(n) = \Theta(n)}$
 
 **3a) (2 pts)** Maximum depth of a $d$-ary heap  
 
-The maxiumn depth of a d-ary heap is $\Theta(\log_d n)$, where $d$ = the maxiumum number of children per node and $n$ = the number of nodes. The heap's shape property ensures that all levels except the bottom are completely filled, with the bottom level being filled from the left to the right. The height of the tree grows logarithmically with $n$, using base $d$.
+The maximum depth of a d-ary heap is $\Theta(\log_d n)$, where $d$ = the maximum number of children per node and $n$ = the number of nodes. The heap's shape property ensures that all levels except the bottom are completely filled, with the bottom level being filled from the left to the right. The height of the tree grows logarithmically with $n$, using base $d$.
 
 
 
@@ -173,9 +173,9 @@ Insert requires at most $O(log_d n)$ work because it only has to compare the ins
 
 **3c) (3 pts)** New bound on the work for Dijkstra's using $d$-ary heap 
 
-Dijkstra's algorithm performs at most $O(|V|)$ delete-min operations. Because each delete-min operation costs at most $O(d \cdot log_d n)$ work and Dijkstra's algoritm will do at most $O(|V|)$ of them, total work for delete-min operations is $O(d|V|\log_d |V|)$.  
+Dijkstra's algorithm performs at most $O(|V|)$ delete-min operations. Because each delete-min operation costs at most $O(d \cdot log_d n)$ work and Dijkstra's algorithm will do at most $O(|V|)$ of them, total work for delete-min operations is $O(d|V|\log_d |V|)$.  
 
-The algorithm will also process up to $O(|E|)$ priority queue insertions or updates. Each of those operatiosn is going to require at most $O(log_d n)$ work, which gives us a maximum total work of $O(|E|\log_d |V|)$ for the insertions and updates.  
+The algorithm will also process up to $O(|E|)$ priority queue insertions or updates. Each of those operations is going to require at most $O(log_d n)$ work, which gives us a maximum total work of $O(|E|\log_d |V|)$ for the insertions and updates.  
 
 Therefore, the maximum total work for Dijkstra's algorithm is:  
 
@@ -286,7 +286,7 @@ There are $n$ possible starting vertices $i$.
 There are $n$ possible destination vertices $j$  
 There are $n$ possible values for $k$ ranging from $0$ to $n -1$   
 
-This gives us $n \cdot n \cdot n = n^3$ subproblems. Due to memozation table storage, each subproblem is computed once. Each subproblem requires a constant number of table lookups, one addition operation, and one comparsion operation, all of which are constant time operations. Total work is therefore:  
+This gives us $n \cdot n \cdot n = n^3$ subproblems. Due to memoization table storage, each subproblem is computed once. Each subproblem requires a constant number of table lookups, one addition operation, and one comparison operation, all of which are constant time operations. Total work is therefore:  
 
 $W(n) = n^3 \cdot \Theta(1)$  
 
@@ -301,17 +301,17 @@ Our dynamic programming algorithm from 4d has a total work of:
 
 $W_{P}(n) = \Theta(n^3)$
 
-For a single execution of finding the shortest path from one vertex to all the others, the standard Djikstra's algorithm using a binary heap priority queue requires this amount of work, with $n$ representing vertices and $m$ representing edges:  
+For a single execution of finding the shortest path from one vertex to all the others, the standard Dijkstra's algorithm using a binary heap priority queue requires this amount of work, with $n$ representing vertices and $m$ representing edges:  
 
 $W_{D}(n,m) = O((n + m)\log n)$  
 
-To find shortest path between all vertices, as our dynamic programming algorithm does, Djikstra's algorithm must run $n$ times, so the total work we get for Djikstra is:  
+To find shortest path between all vertices, as our dynamic programming algorithm does, Dijkstra's algorithm must run $n$ times, so the total work we get for Dijkstra is:  
 
 $W_{D}(n,m) = O(n(n + m)\log n)$  
 
-Whether the dynamic programming algorithm does better than Djikstra's algorithm for this purpose depends on the number of edges in the graph being analyzed.  
+Whether the dynamic programming algorithm does better than Dijkstra's algorithm for this purpose depends on the number of edges in the graph being analyzed.  
 
-A graph is considered sparse if the number of edges in a graph grows proportionately with the number of vertices. A graph is considered dense if the number of edges grows quadratically with the number of vertices. This difference in edges makes no difference for the asymptotic work involved in our dynamic programming algorithm, but it does cause a change in the asymptotic work for Djikstra's algorithm:  
+A graph is considered sparse if the number of edges in a graph grows proportionately with the number of vertices. A graph is considered dense if the number of edges grows quadratically with the number of vertices. This difference in edges makes no difference for the asymptotic work involved in our dynamic programming algorithm, but it does cause a change in the asymptotic work for Dijkstra's algorithm:  
 
 Sparse: $m = \Theta(n)$  
 
@@ -327,7 +327,7 @@ $W_{D}(n) = O(n^3\log n)$
 
 $W_{P}(n) = \Theta(n^3)$  
 
-Therefore we would expect Djikstra's algorithm in the worst case to be more efficient than the dynamic programming algorithm for sparse graphs, but less work efficient than the dynamic programming algorithm for dense graphs. Additionally, Floyd-Warshall can handle negative edge weights provided no negative cycles exist, whereas Djikstra's algorithm requires nonnegative edge weights.
+Therefore we would expect Dijkstra's algorithm in the worst case to be more efficient than the dynamic programming algorithm for sparse graphs, but less work efficient than the dynamic programming algorithm for dense graphs. Additionally, Floyd-Warshall can handle negative edge weights provided no negative cycles exist, whereas Dijkstra's algorithm requires nonnegative edge weights.
 
 ## 5. Spanning trees
 
@@ -343,7 +343,7 @@ Consider a solution to MST that produces a spanning tree that contains an edge w
 
 2. Process an edge that was not included in the MST by adding that edge back to the MST. This will form one cycle.  
 
-3. For each edge in the newly formed cycle aside from the one that was added, temporarily remove it and record the total weight of the new spanning tree that is formed. Keep the minimum total edge weight spanning tree found this way, and overwrite it with a new spanning tree whenever one with a lower total edge weight is found. The original MST is retained in separate variable for use in the rest of the comparsions. Comparisions take the form of:  
+3. For each edge in the newly formed cycle aside from the one that was added, temporarily remove it and record the total weight of the new spanning tree that is formed. Keep the minimum total edge weight spanning tree found this way, and overwrite it with a new spanning tree whenever one with a lower total edge weight is found. The original MST is retained in separate variable for use in the rest of the comparisons. Comparisions take the form of:  
 Original MST Weight - Removed Edge Weight + Added Edge Weight = Current Spanning Tree Weight.
 
 4. Repeat steps 2 and 3 for each edge not included in the original MST until every edge has been processed.  
