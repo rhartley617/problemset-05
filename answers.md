@@ -344,10 +344,16 @@ Consider a solution to MST that produces a spanning tree that contains an edge w
 
 5. Return the lowest weight spanning tree recorded during this process as the next lowest weight spanning tree.  
 
+**5c) (2 pts)** What is the work of your algorithm?  
 
+Using Kruskal's algorithm to find the MST: $O(|E|\log|E|)$  
 
+Find the cycle and remove edges to compare span weights: $O(|V|)$ per iteration  
 
+Process each edge not included in the MST:  $O(|E|)$ iterations  
 
-**5c) (2 pts)** What is the work of your algorithm?
+All the rest of the work is constant. The total work is:  
+
+$\boxed{W(|E|, |V|) \in O(|E|\log|E| + |E||V|)}$
 
 
