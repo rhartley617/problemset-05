@@ -327,9 +327,11 @@ Therefore we would expect Djikstra's algorithm to be more efficient than the dyn
 
 ## 5. Spanning trees
 
-**5a) (3 pts)** Is a solution to MST guaranteed to be a solution to MMET? Why or why not?
+**5a) (3 pts)** Is a solution to MST guaranteed to be a solution to MMET? Why or why not?  
 
+Yes, MST is guaranteed to find a solution for MMET. An MST minimizes the total weight of all edges in the spanning tree, whereas the MMET minimizes the weight of the largest edge in the spanning tree.  
 
+Consider a solution to MST that produces a spanning tree that contains an edge with a larger weight than the maximum weight of an edge in some alternative spanning tree for the same graph. If we were to remove this edge from the MST, this would create two disconnected span components. Because our alternative tree contains a lighter edge than the one that was removed, this lighter edge must connect the two disconnected components, which would produce an MST with a lower total edge weight than the original MST, which would contradict the optimality of the original MST. Therefore every MST is also an MMET in the same graph.$\blacksquare$
 
 **5b) (2 pts)** Suppose that the optimal solution to MST is impossible to use for some reason. Describe an algorithm to instead find the next best tree (pseudo-code or English is fine). That is, return the tree with the next lowest weight. 
 
