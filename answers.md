@@ -33,6 +33,10 @@ $\boxed{S(|V|,|E|) = O((|V| + |E|)\log|V|)}$
 
 **2a) (3 pts)** Expression tree algorithm with work and span  
 
+*Note: The input for this algorithm must be tokenized with whitespace between tokens. Negative numbers and decimals not supported.   
+Valid Input: ( 3 + 4 ) * 5  
+Invalid Input: (3+4)*5
+
 ```python  
 class Node:
     def __init__(self, value, left=None, right=None):
