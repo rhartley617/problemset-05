@@ -199,9 +199,37 @@ $\boxed{W \in O(|E|)}$
 
 ![apsp_example.jpg](apsp_example.jpg)
 
-Compute $\mathit{APSP}(i, j, k)$ for all $i, j, k$.
+Compute $\mathit{APSP}(i, j, k)$ for all $i, j, k$.  
 
+There are three vertices, 0, 1, 2.
+With $i$ representing the starting vertex by row, $j$ representing the destination vertex by column, the value at $(i, j)$ representing the minimum total weight of a walk from $i$ to $j$ using at most $k$ edges, and $k$ representing the maximum number of edges allowed on the path from $i$ to $j$, the three matrices below show the minimum total path weight for $0 \leq k \leq 2$ edges where walks are allowed to revisit vertices. The graph contains a negative cycle, so allowing additional edges can produce progressively smaller path weights, which is why it's important to limit the amount of edges used in order to prevent the path weights from decreasing without bound.
 
+$
+APSP(i,j,0) =
+\begin{bmatrix}
+0 & \infty & \infty \\
+\infty & 0 & \infty \\
+\infty & \infty & 0
+\end{bmatrix}
+$  
+
+$
+APSP(i,j,1) =
+\begin{bmatrix}
+0 & -2 & 2 \\
+-2 & 0 & 1 \\
+2 & 1 & 0
+\end{bmatrix}
+$  
+
+$
+APSP(i,j,2) =
+\begin{bmatrix}
+-4 & -2 & -1 \\
+-2 & -4 & 0 \\
+-1 & 0 & 0
+\end{bmatrix}
+$  
 
 **4b) (3 pts)** Relationship between $\mathit{APSP}(i, j, 1)$ and
 $\mathit{APSP}(i, j, 2)$. Can you write $\mathit{APSP}(i, j, 2)$ in
