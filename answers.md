@@ -203,41 +203,41 @@ Compute $\mathit{APSP}(i, j, k)$ for all $i, j, k$.
 
 There are three vertices, 0, 1, and 2. With $i$ representing the starting vertex by row, $j$ representing the destination vertex by column, and $k$ representing the maximum index vertex permitted as an intermediate vertex, each entry at $(i,j)$ represents the weight calculated for a walk from $i$ to $j$. Matrix $D^{-1}$ represents the direct edge weights when no intermediate vertices are permitted. The three matrices underneath it show the results of the Floyd–Warshall recurrence for $0 \leq k \leq 2$ as we allow intermediate vertices $k = 0$ (vertex 0), $k = 1$ (vertices 0, 1) and $k = 2$ (vertices 0, 1, 2). The graph contains a negative cycle, $0 \rightarrow 1 \rightarrow 0$, with total weight $-4$. Therefore, the finite values produced by the recurrence do not represent well defined unrestricted shortest walk distances, since repeating the negative cycle can decrease walk weights without bound.
 
-$
+$$
 D^{-1} =
 \begin{bmatrix}
 0 & -2 & 2 \\
 -2 & 0 & 1 \\
 2 & 1 & 0
 \end{bmatrix}
-$  
+$$  
 
-$
+$$
 APSP(i,j,0) =
 \begin{bmatrix}
 0 & -2 & 2 \\
 -2 & -4 & 0 \\
 2 & 0 & 0
 \end{bmatrix}
-$  
+$$  
 
-$
+$$
 APSP(i,j,1) =
 \begin{bmatrix}
 -4 & -6 & -2 \\
 -6 & -8 & -4 \\
 -2 & -4 & 0
 \end{bmatrix}
-$  
+$$  
 
-$
+$$
 APSP(i,j,2) =
 \begin{bmatrix}
 -4 & -6 & -2 \\
 -6 & -8 & -4 \\
 -2 & -4 & 0
 \end{bmatrix}
-$  
+$$  
 
 **4b) (3 pts)** Relationship between $\mathit{APSP}(i, j, 1)$ and
 $\mathit{APSP}(i, j, 2)$. Can you write $\mathit{APSP}(i, j, 2)$ in
@@ -245,18 +245,18 @@ terms of $\mathit{APSP}(i, j, 0)$ and $\mathit{APSP}(i, j, 1)$ only?
 
 The Floyd-Warshall recurrence for $\mathit{APSP}(i, j, 2)$ is:  
 
-$
-APSP(i,j,2) =
+
+$APSP(i,j,2) =
 \min
 \begin{cases}
 \mathit{APSP}(i,j,1), \\
 \mathit{APSP}(i,2,1) + \mathit{APSP}(2,j,1)
-\end{cases}
-$
+\end{cases}$
+
 
 The overall relationship between the 3 values is:  
 
-$\mathit{APSP}(i,j,2) \leq \mathit{APSP}(i,j,1) \leq \mathit{APSP}(i,j,0)$  
+$\mathit{APSP}(i,j,2) \leq \mathit{APSP}(i,j,1) \leq \mathit{APSP}(i,j,0)$   
 
 Each increase in $k$ allows an additional vertex to be used as an intermediate vertex, while preserving all previously permitted intermediate vertices. The minimum total walk weight can only decrease or remain unchanged as additional intermediate vertices are permitted. By the time we're ready to compute $\mathit{APSP}(i,j,2)$, the best intermediate walk weight using only vertices 0 and 1 as permitted vertices is going to be $\mathit{APSP}(i,j,1)$. In order to compute $\mathit{APSP}(i,j,2)$, we need to compare $\mathit{APSP}(i,j,1)$ with new possible paths that include vertex 2, which will require us to look at $\mathit{APSP}(i,2,1)$ and $\mathit{APSP}(2,j,1)$. Therefore we can't express $\mathit{APSP}(i,j,2)$ strictly in terms of $\mathit{APSP}(i,j,0)$ and $\mathit{APSP}(i,j,1)$ for the same pair of vertices $(i, j)$.
 
@@ -264,14 +264,12 @@ Each increase in $k$ allows an additional vertex to be used as an intermediate v
 
 The optimal substructure property for $\mathit{APSP}(i,j,k)$ is:  
 
-$
-\mathit{APSP}(i,j,k) =
+$\mathit{APSP}(i,j,k) =
 \min
 \begin{cases}
 \mathit{APSP}(i,j,k-1), \\
 \mathit{APSP}(i,k,k-1) + \mathit{APSP}(k,j,k-1)
-\end{cases}
-$
+\end{cases}$
 
 We compare the shortest path that doesn't pass through vertex $k$ as an intermediate vertex with the shortest path that does pass through vertex $k$ as an intermediate vertex and take the one with the minimum weight of the two.
 
@@ -334,6 +332,7 @@ Yes, MST is guaranteed to find a solution for MMET. An MST minimizes the total w
 Consider a solution to MST that produces a spanning tree that contains an edge with a larger weight than the maximum weight of an edge in some alternative spanning tree for the same graph. If we were to remove this edge from the MST, this would create two disconnected span components. Because our alternative tree is a spanning tree, it must contain at least one edge connecting those two components. Because the alternative tree's maximum edge weight is smaller than the weight of the edge that was removed from the original MST, this means that every edge in the alternative tree is smaller than the one that was removed, including the edge that would connect the two disconnected MST components. Connecting these two components with the new edge would produce a new spanning tree with a lower total edge weight than the original MST, which would contradict the optimality of the original MST. Therefore every MST is also an MMET in the same graph.$\blacksquare$
 
 **5b) (2 pts)** Suppose that the optimal solution to MST is impossible to use for some reason. Describe an algorithm to instead find the next best tree (pseudo-code or English is fine). That is, return the tree with the next lowest weight.  
+  
 1. Use Kruskal's algorithm to find an MST that contains no cycles for the graph being processed.
 
 2. Process an edge that was not included in the MST by adding that edge back to the MST. This will form one cycle.  
