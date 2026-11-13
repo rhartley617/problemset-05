@@ -291,9 +291,39 @@ $\boxed{W(n) = \Theta(n^3)}$
 
 
 **4e) (3 pts)** Compare the work of this algorithm against that of just running
-Dijkstra $n$ times. Is our dynamic programming algorithm better than this?
+Dijkstra $n$ times. Is our dynamic programming algorithm better than this?  
 
+Our dynamic programming algorithm from 4d has a total work of:  
 
+$W_{P}(n) = \Theta(n^3)$
+
+For a single execution of finding the shortest path from one vertice to another, the standard Djikstra's algorithm using a binary heap priority queue requires this amount of work, with $n$ representing vertices and $m$ representing edges:  
+
+$W_{D}(n) = O((n + m)\log n)$  
+
+To find shortest path for all the vertices as we do with the dynamic programming algorithm, this work will need to happen $n$ times, so the total work we get for Djikstra is:  
+
+$W_{D}(n) = O(n(n + m)\log n)$  
+
+Whether the dynamic programming algorithm does better than Djikstra's algorithm for this purpose depends on the number of edges in the graph being analyzed.  
+
+A graph is considered sparse if the number of edges in a graph grows proportionately with the number of vertices. A graph is considered dense if the number of edges grows quadratically with the number of edges. This difference in edges makes no difference for the asymptotic work involved in our dynamic programming algorithm, but it does cause a change in the asymptotic work for Djikstra's algorithm:  
+
+Sparse: $m = \Theta(n)$  
+
+$W_{D}(n) = O(n(n + n)\log n)$  
+$W_{D}(n) = O(n^2\log n)$  
+
+$W_{P}(n) = \Theta(n^3)$
+
+Dense: $m = \Theta(n^2)$  
+
+$W_{D}(n) = O(n(n + n^2)\log n)$  
+$W_{D}(n) = O(n^3\log n)$  
+
+$W_{P}(n) = \Theta(n^3)$  
+
+Therefore we would expect Djikstra's algorithm to be more efficient than the dynamic programming algorithm for sparse graphs, but less work efficient than the dynamic programming algorithm for dense graphs.
 
 ## 5. Spanning trees
 
