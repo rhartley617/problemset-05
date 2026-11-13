@@ -339,7 +339,8 @@ Consider a solution to MST that produces a spanning tree that contains an edge w
 
 2. Process an edge that was not included in the MST by adding that edge back to the MST. This will form one cycle.  
 
-3. For each edge in the newly formed cycle aside from the one that was added, temporarily remove it and record the total weight of the new spanning tree that is formed. Keep the minimum total edge weight spanning tree found this way, and overwrite it with a new spanning tree whenever one with a lower total edge weight is found. The original MST is retained in separate variable for use in the rest of the comparsions.
+3. For each edge in the newly formed cycle aside from the one that was added, temporarily remove it and record the total weight of the new spanning tree that is formed. Keep the minimum total edge weight spanning tree found this way, and overwrite it with a new spanning tree whenever one with a lower total edge weight is found. The original MST is retained in separate variable for use in the rest of the comparsions. Comparisions take the form of:  
+Original MST Weight - Removed Edge Weight + Added Edge Weight = Current Spanning Tree Weight.
 
 4. Repeat steps 2 and 3 for each edge not included in the original MST until every edge has been processed.  
 
