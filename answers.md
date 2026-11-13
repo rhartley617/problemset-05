@@ -333,7 +333,18 @@ Yes, MST is guaranteed to find a solution for MMET. An MST minimizes the total w
 
 Consider a solution to MST that produces a spanning tree that contains an edge with a larger weight than the maximum weight of an edge in some alternative spanning tree for the same graph. If we were to remove this edge from the MST, this would create two disconnected span components. Because our alternative tree is a spanning tree, it must contain at least one edge connecting those two components. Because the alternative tree's maximum edge weight is smaller than the weight of the edge that was removed from the original MST, this means that every edge in the alternative tree is smaller than the one that was removed, including the edge that would connect the two disconnected MST components. Connecting these two components with the new edge would produce a new spanning tree with a lower total edge weight than the original MST, which would contradict the optimality of the original MST. Therefore every MST is also an MMET in the same graph.$\blacksquare$
 
-**5b) (2 pts)** Suppose that the optimal solution to MST is impossible to use for some reason. Describe an algorithm to instead find the next best tree (pseudo-code or English is fine). That is, return the tree with the next lowest weight. 
+**5b) (2 pts)** Suppose that the optimal solution to MST is impossible to use for some reason. Describe an algorithm to instead find the next best tree (pseudo-code or English is fine). That is, return the tree with the next lowest weight.  
+1. Use Kruskal's algorithm to find an MST that contains no cycles for the graph being processed.
+
+2. Process an edge that was not included in the MST by adding that edge back to the MST. This will form one cycle.  
+
+3. For each edge in the newly formed cycle aside from the one that was added, temporarily remove it and record the total weight of the new spanning tree that is formed. Keep the minimum total edge weight spanning tree found this way, and overwrite it with a new spanning tree whenever one with a lower total edge weight is found. The original MST is retained in separate variable for use in the rest of the comparsions.
+
+4. Repeat steps 2 and 3 for each edge not included in the original MST until every edge has been processed.  
+
+5. Return the lowest weight spanning tree recorded during this process as the next lowest weight spanning tree.  
+
+
 
 
 
